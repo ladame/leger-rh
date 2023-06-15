@@ -1,0 +1,51 @@
+{% extends 'blogs/base.html'%}
+{% load static%}
+
+{% block last_pictures%}/media{{newdata.gambar.url}}{% endblock %}
+
+{% block last_title%}{{newdata.title|title}}{% endblock %}
+
+{% block last_body %}
+{{newdata.body}}
+{% endblock %}
+
+{% block last_created %}{{newdata.created_at}}{% endblock%}
+
+{% block content_preview %}
+<div class="h2 fw-bold p-2 w-100 rounded bg-warning rounded-pill">
+	Autres nouvelles
+</div>
+	
+<div class="row">
+	{%  for data in olddata %}
+	<div class="col-4 my-2">
+		<div class="card bg-white" >
+			<div class="container-fluid text-center p-2">
+				<img src="/media{{data.gambar.url}}" class="img rounded w-100" alt="">	
+			</div>
+			<div class="container-fluid text-start">
+				<p class="fw-bold text-center">{{data.title|truncatechars:20}}</p>
+				<p>{{data.body|truncatechars:100}}</p>
+				<p><a href="#" class="btn btn-secondary">détail</a></p>
+			</div>
+			<div class="card-footer">
+				publié: {{data.created_at}}
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+<div class="container  justify-content-center d-flex">
+		<div class="p-2 position-absolute rounded border border-1 border-warning px-3  bg-warning fw-bold" style="margin-top:10px">
+			pages: 
+			{% for i in olddata.paginator.page_range %}
+				{% if i == olddata.number %}
+				<a href="?p={{i}}" class="btn btn-primary ">{{i}}</a>
+				{% else %}
+				<a href="?p={{i}}" class="btn btn-outline-secondary">{{i}}</a>
+				{% endif %}
+			{% endfor%}
+		</div>
+	</div>
+
+{% endblock%}

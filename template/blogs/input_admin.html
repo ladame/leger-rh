@@ -1,0 +1,15 @@
+{% extends 'blogs/base_admin.html'%}
+{% load static %}
+{% block contents%}
+<div class="container p-2 my-3 h1">
+	Créer un nouvel article
+</div>
+<div class="container p-2 my-2 rounded border h-100 border-2 shadow border-warning bg-white">
+	<form method="post" enctype="multipart/form-data" action="">
+		{% csrf_token %}
+		{{forms.as_p}}
+		<input type="submit" class="btn btn-success" value="Publier des nouvelles">
+	</form>
+</div>
+
+{% endblock%}

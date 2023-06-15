@@ -9,3 +9,9 @@ def cabinet(request):
 
 def nantes(request):
 	return render(request,'nantes.html')
+
+def contact(request):
+	return render(request,'contact.html')
+
+def cadres(request):
+	return render(request,'cadres.html')
