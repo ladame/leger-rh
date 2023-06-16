@@ -2,8 +2,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script src="{% static 'js/jquery.3.6.4.js'%}" type="text/javascript" charset="utf-8" async defer></script>
-	<script src="{% static 'js/bootstrap5.min.js'%}" type="text/javascript" charset="utf-8" async defer></script>
+	<script src="{% static 'js/jquery.3.6.4.js'%}" type="text/javascript"></script>
+	<script src="{% static 'js/bootstrap5.min.js'%}" type="text/javascript"></script>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Administration des nouvelles - Cabinet de recrutement batiment Nantes</title>
@@ -11,7 +11,60 @@
 	<link rel="stylesheet" href="{% static 'css/bootstrap5.min.css'%}">
 </head>
 <body style="background: rgba(255,255,0,0.4);">
+{% if user.is_superuser %}
+	<div class="row p-2 bg-warning d-flex justify-content-between">
+		<div class=" rounded col-6  d-flex h1 justify-content-start container" >
+			<img src='{% static "img/leger-logo.png"%}' class="rounded img shadow" style="width:200px;height:100px;"><span class="py-4 px-2">Gestion de l’actualité</span>
+		</div>
+		<div class="col-6 container d-flex justify-content-end">
+			<a href="#" class="mx-2 py-4 btn btn-outline-primary">Organiser les nouvelles</a>
+			<a href="#" class="mx-2 py-4 btn btn-outline-primary">Ajouter des nouvelles</a>
+			<div class="py-4 justify-content-end d-flex">
+				<a href="#" class="mx-2 btn btn-outline-secondary">Modifier le mot de passe</a><br>				
+				<a href="/blogs/logout/" class="mx-2 btn btn-outline-secondary">Déconnexion</a>				
+			</div>
+			
+		</div>
+
+	</div>
 	{% block contents%}
 	{% endblock %}
+{% else %}
+	<div class="col-xxl-4 col-xl-4 col-lg-8 col-md-10 col-sm-12 border border-warning rounded p-2 container my-5">
+		<div class="card-header text-center h1 bg-warning">
+			Connectez-vous
+		</div>
+		<div class="card-body text-start fw-bold" style="background:rgba(255,255,0,0.5)">
+			<form method="post" action="">
+				{% csrf_token %}
+				<div class="row my-1">
+					<div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-5">
+						Nom d’utilisateur:
+					</div>
+					<div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-7">
+						<input class="form-control" type="text" name="txtUsername">					
+					</div>				
+				</div>
+				<div class="row my-1">
+					<div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-5">
+						Mot de passe:
+					</div>
+					<div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-7">
+						<input class="form-control" type="password" name="txtPassword">					
+					</div>				
+				</div>
+				<div class="row my-1  d-flex justify-content-center">
+					<input type="submit" class="btn btn-primary w-50 my-1" value="Envoyer" name="">				
+				</div>
+			</form>
+		</div>
+
+	</div>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("body").css("background","rgba(255,255,255,1)");
+		})
+	</script>
+{% endif%}
 </body>
 </html>
