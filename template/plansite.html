@@ -49,12 +49,6 @@ ga('send', 'pageview');
   }
 </style>
 
-<!--[if lt IE 9]>
-	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
-
-<script type="text/javascript" src="{% static 'js/jquery.zepto.lazy.js'%}"></script>
 </head>
   <body>
     <div id="preloader">
@@ -76,7 +70,7 @@ ga('send', 'pageview');
           
           <div class="carousel-inner" role="listbox">
             
-              <div class="item active">
+               <div class="item active">
                 <figure class="slider-figure-charte" style="background-image: url('/static/img/bandeau1.jpg');" alt="">
                   
                   <figcaption class="slider-header__carousel-caption">
@@ -137,13 +131,13 @@ ga('send', 'pageview');
         <div class="collapse navbar-collapse" id="main-nav">
           <ul class="nav navbar-nav">
             
-                  <li ><a href="/">Accueil</a></li>
-        
+              		<li ><a href="/">Accueil</a></li>
+				
                         <li >
                             <a href="/cabinet-conseil-recrutement-btp/#consulter">Le cabinet</a>
                         </li>
                       
-                        <li class="active">
+                        <li >
                             <a href="/recrutement-btp-paris-nantes/#consulter">Espace candidats</a>
                         </li>
                       
@@ -158,34 +152,46 @@ ga('send', 'pageview');
         </div>
       </div>
     </nav><main id="consulter" class="main" role="main">
-<div class="clearfix ">
-<div class="clearfix">
-  <div class="flex-center">
-    <div class="col-md-5 col-md-pull-1 no-pad img-bg2 hidden-xs">
-    </div>
-    <div class="col-md-5 col-xs-12 text-justify">
-      <div class='page-header-top'>
-        <h1>Cabinet de conseil RH <small>à Paris et Nantes</small> </h1>
-      </div>
+<div class="container-main ">
 
-      <p class="lead">Vous cherchez une entreprise qui vous corresponde ? Vous êtes lassé des cabinets de conseil et agences
-        d’intérim
-        qui ne vous rappellent jamais ? </p>
-      <p>Au sein du cabinet LRC, vous serez accompagné dans votre démarche : remise à jour d’un CV clair et attractif,
-        proposition de plusieurs entreprises partenaires, possibilité de rencontrer des opérationnels, conseil sur les
-        entretiens, comment aborder sereinement la question de la rémunération. </p>
-      <p class="well">Nous proposons aussi des conseils pour les étudiants qui se lancent dans leur premier stage ou leur première
-        embauche.</p>
-      <p>Je vous invite à déposer votre CV, nous vous contacterons rapidement.</p>
-      <a href="https://apply.humansourcing.com/f/p/n/fr/mR0/" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i>  Déposer mon CV </a>
-    </div>
-  </div>
+<div class="page-header-top">
+	<h1>Plan du site</h1>
 </div>
-
+<div class="container no-pad">
+	<div class="row">
+		<div class="col-md-6">
+			
+						<H2>Notre Société</H2>
+						
+							<ul class="list-plan-site">
+								
+										<li><a href="/mentions/" title="Mentions légales">Mentions légales</a></li>
+									
+										<li><a href="/plan-site/" title="Plan du site">Plan du site</a></li>
+									
+							</ul>
+						
+						<H2>Pages d'informations</H2>
+						
+							<ul class="list-plan-site">
+								
+										<li><a href="/recrutement-btp-paris-nantes/" title="Espace candidats">Espace candidats</a></li>
+									
+										<li><a href="/recrutement-cadres-btp/" title="Espace entreprises">Espace entreprises</a></li>
+									
+										<li><a href="/rgpd/" title="RGPD">RGPD</a></li>
+									
+							</ul>
+						
+		</div>
+		<div class="col-md-6">
+			
+		</div>
+	</div>
+</div>
 
 </div>
 </main>
-
 
 
     <img class='img-responsive text-center center-block espace-photos hidden-xs' src="{% static 'img/footer.jpg'%}" alt=''>

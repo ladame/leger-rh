@@ -15,3 +15,12 @@ def contact(request):
 
 def cadres(request):
 	return render(request,'cadres.html')
+
+def mentions(request):
+	return render(request,'mention.html')
+
+def rgpd(request):
+	return render(request,'rgpd.html')
+
+def plansite(request):
+	return render(request,'plansite.html')
