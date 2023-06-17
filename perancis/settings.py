@@ -27,9 +27,11 @@ SECRET_KEY = 'django-insecure-vayd&db%_dh6t%nx!ro854_tz4y_3##uq(a6193ux4zffct^d-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+LOGIN_URL = '/blogs/adm/'
 
-CSRF_TRUSTED_ORIGINS = ['http://192.168.1.50']
+ALLOWED_HOSTS = ['127.0.0.1','leopard1982.pythonanywhere.com']
+
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000','https://leopard1982.pythonanywhere.com']
 
 
 # Application definition

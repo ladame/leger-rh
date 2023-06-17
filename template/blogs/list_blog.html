@@ -1,0 +1,55 @@
+{% extends 'blogs/base_admin.html'%}
+{% load static %}
+{% block contents %}
+<div class="container p-2 my-2 rounded border h-100 border-2 shadow border-warning bg-white">
+	{% if mydata.paginator.count > 0%}
+	<table class="table-warning table">
+		<thead>
+			<tr>
+				<th>Nombre</th>
+				<th>Image</th>
+				<th>Rubrique</th>
+				<th>Article</th>
+				<th>Publié</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for data in mydata%}
+			<tr>
+				<th>{{forloop.counter}}</th>
+				<td><img class = "img rounded shadow" style="width:150px;height:75px" src="/media{{data.gambar.url}}" alt=""></td>
+				<td><span title="Titre: {{data.title|title}}">{{data.title|truncatechars:20|title}}</span></td>
+				<td><span title="Article: {{data.body}}">{{data.body|truncatechars:50}}</span></td>
+				<td>{{data.created_at}}</td>
+				<td>
+					<div class="dropdown mx-2">
+					  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+					    Action
+					  </button>
+					  <ul class="dropdown-menu rounded " aria-labelledby="dropdownMenuButton1">
+					  	{% if data.active %}
+					    	<li><a class="dropdown-item" href="/blogs/update/{{data.id}}/">État : <strong>Affiché</strong> <span class="fst-italic">(cliquez pour modifier)</span></a></li>
+					    {% else %}
+					    	<li><a class="dropdown-item" href="/blogs/update/{{data.id}}/">État : <strong>Non Affiché</strong> <span class="fst-italic">(cliquez pour modifier)</span></a></li>
+					    {% endif%}
+					    <li><a class="dropdown-item fw-bold text-danger" href="/blogs/delete/{{data.id}}">X Supprimer l’article</a></li>
+					  </ul>
+					</div>				
+			</div>
+
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	{% else %}
+	<div class="p-2 h5 text-center">
+		<p>Aucun article n’a encore été écrit. Allez-vous ajouter maintenant?</p>
+		<p>
+			<a href="/blogs/adm/" class="btn btn-primary">Cliquez pour ajouter un article</a>
+		</p>
+	</div>
+	{% endif %}
+</div>
+{% endblock%}

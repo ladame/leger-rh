@@ -12,16 +12,64 @@
 </head>
 <body style="background: rgba(255,255,0,0.4);">
 {% if user.is_superuser %}
+	<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content border border-warning">
+      	<div class="modal-header p-2 bg-warning rounded">
+	        <h5 class="modal-title" id="exampleModalLabel">Modifier le mot de passe</h5>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       	</div>
+      	<form method="post" action="/blogs/adm/1/">
+      		{% csrf_token %}
+	      	<div class="modal-body ">
+		        <div class="row px-3">
+		        	<input type="password" name="txtOldPassword" class="form-control" value="" placeholder="Entrez l’ancien mot de passe" required>
+		        </div>
+		        <hr>
+		        <div class="row px-3 my-1">
+		        	<input type="password" name="txtNewPassword1" class="form-control" value="" placeholder="Entrez un nouveau mot de passe" required>
+		        </div>
+		        <div class="row px-3 my-1">
+		        	<input type="password" name="txtNewPassword2" class="form-control" value="" placeholder="Confirmer le nouveau mot de passe" required>
+		        </div>
+
+	      	</div>
+	      	<div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+		        <button type="submit" class="btn btn-primary">Changement</button>
+	      	</div>
+		</form>
+	</div>
+  	
+  </div>
+</div>
+
 	<div class="row p-2 bg-warning d-flex justify-content-between">
-		<div class=" rounded col-6  d-flex h1 justify-content-start container" >
-			<img src='{% static "img/leger-logo.png"%}' class="rounded img shadow" style="width:200px;height:100px;"><span class="py-4 px-2">Gestion de l’actualité</span>
+		<div class=" rounded col-3 h3 justify-content-start container" >
+			<div class="row justify-content-center">
+				<img src='{% static "img/leger-logo.png"%}' class="rounded" style="width:200px;height:100px;">				
+			</div>
+			<div class="row">
+				<span class="text-center">Gestion de l’actualité</span>				
+			</div>
 		</div>
-		<div class="col-6 container d-flex justify-content-end">
-			<a href="#" class="mx-2 py-4 btn btn-outline-primary">Organiser les nouvelles</a>
-			<a href="#" class="mx-2 py-4 btn btn-outline-primary">Ajouter des nouvelles</a>
-			<div class="py-4 justify-content-end d-flex">
-				<a href="#" class="mx-2 btn btn-outline-secondary">Modifier le mot de passe</a><br>				
-				<a href="/blogs/logout/" class="mx-2 btn btn-outline-secondary">Déconnexion</a>				
+		<div class="col-9 container d-flex justify-content-end">
+			<div class="py-5 my-2 justify-content-end d-flex">
+				
+				<div class="dropdown mx-1">
+					<a class="mx-1 btn btn-success" style="font-size: 12px" href="/blogs/">&larr; Aller à la page des nouvelles</a>
+					<a class="mx-1 btn btn-outline-primary" href="/blogs/adm/1/" style="font-size: 12px">Organiser les nouvelles</a>
+					<a class="mx-1 btn btn-outline-primary" href="/blogs/adm/" style="font-size: 12px">Ajouter des nouvelles</a>
+
+				  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 12px">
+				    Mon compte
+				  </button>
+				  <ul class="dropdown-menu rounded " style="font-size: 12px" aria-labelledby="dropdownMenuButton1">
+				    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Modifier mon mot de passe</a></li>
+				    <li><a class="dropdown-item" href="/blogs/logout/">Déconnexion</a></li>
+				  </ul>
+				</div>				
 			</div>
 			
 		</div>

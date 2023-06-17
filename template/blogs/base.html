@@ -34,6 +34,7 @@
 	<div class="p-3 container-fluid  text-center rounded rounded-2" style="background: rgba(255,255,0,0.4);padding-bottom: 50px !important">
 		<div class="container-fluid rounded rounded-pill bg-warning p-2  h2 fw-bold" >Dernières Nouvelles!</div>
 		<div class="row p-2">
+		{% if newdata.title %}
 			<div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
 				
 				<img src="{% block last_pictures %}{% endblock %}" class="border border-2  rounded w-100 h-100" alt="">
@@ -49,14 +50,26 @@
 				<p class="card-body text-start">{% block last_body %}{% endblock%}</p>
 			</div>	
 		</div>
+	{% else %}
+		<div class="col-12 p-2 text-center h5">
+			<p>Cette page est en construction...</p>
+			<p>S’il vous plaît visitez à nouveau plus tard ...</p>
+		</div>
+	{% endif%}
 	</div>
 
+{% if olddata.paginator.count > 0%}
 	<div class="p-4 container-fluid  text-center rounded my-2 border border-2 border-warning" style="background-image: url('/static/img/background.jpg'); margin-bottom:130px !important">
 
 		<div class="row p-2 d-flex justify-content-between" >
 			{% block content_preview%}{% endblock%}
 		</div>
 	</div>
+{% else %}
+<div style="margin-bottom: 130px;">
+	
+</div>
+{% endif %}
 
 <footer class="footer fixed-bottom container-fluid  p-2 shadow rounded border border-2 border-white" style="margin-top:100px;background: rgba(255,255,255,0.3);">
       <div class="text-end fw-bold">
