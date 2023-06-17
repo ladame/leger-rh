@@ -1,10 +1,11 @@
 
 from django.urls import path, re_path
 
-from blogs.views import homepage, admin_page,logoutme, admin_list, update_active, delete_active
+from blogs.views import homepage, admin_page,logoutme, admin_list, update_active, delete_active, detail_article
 
 urlpatterns = [
     path('', homepage, name="homepage"),
+    path('<int:pk>/',detail_article,name="detail_article"),
     path('adm/',admin_page,name="admin_page"),
     path('adm/<str:page>/',admin_list,name="admin_list"),
     path('logout/',logoutme,name="logoutme"),

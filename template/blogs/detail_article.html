@@ -1,0 +1,16 @@
+{% extends 'blogs/base.html'%}
+{% load static%}
+
+{% block title_yuhu %}Nouvelles détaillées{% endblock %}
+
+{% block last_pictures%}/media{{newdata.gambar.url}}{% endblock %}
+
+{% block last_title%}{{newdata.title|title}}{% endblock %}
+
+{% block last_body %}
+{{newdata.body}}
+<p class="text-center"><a href="/blogs/" class="btn btn-secondary">&larr; Retour aux nouvelles</a></p>
+{% endblock %}
+
+{% block last_created %}{{newdata.created_at}}{% endblock%}
+

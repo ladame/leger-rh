@@ -30,6 +30,17 @@ def homepage(request):
 
 	return render(request,'blogs/dashboard.html',{'olddata':lihatlah,'newdata':newdata})
 
+def detail_article(request,pk):
+	try:
+		nomor_id = int(pk)
+	except:
+		nomor_id = 0
+
+	mydata = myBlogs.objects.all().filter(active=True,id=pk).order_by("-id")
+
+	filtered_data = myBlogs.objects.get(id=nomor_id)
+	return render(request,'blogs/detail_article.html',{'olddata':mydata,'newdata':filtered_data})
+
 def admin_page(request):
 	username=None
 	password=None

@@ -52,4 +52,16 @@
 	</div>
 	{% endif %}
 </div>
+	<div class="container justify-content-center">
+		<div class="p-2  px-2 text-center shadow rounded rounded-pill"><span class="fw-bold"> page </span>:
+			{% for hal in mydata.paginator.page_range %}
+				{% if hal == mydata.number %}
+					<a href="/blogs/adm/{{hal}}/" class="btn btn-primary">{{hal}}</a>
+				{% else %}
+					<a href="/blogs/adm/{{hal}}/" class="btn btn-primary">{{hal}}</a>
+				{% endif %}
+			{% endfor%}
+		</div>
+	</div>
+
 {% endblock%}
