@@ -46,9 +46,11 @@
 			</div>
 			<div class="col-xxl-6 col-xl-6 col-lg-6 p-2 col-md-6 col-sm-6  rounded" >
 				<p class="h3 card-title" style="margin-top:20px">{% block last_title%}{% endblock %}</p>
+				{% if tampilkan_new %}
 				<div class="position-absolute">
 					<img src="{% static 'img/new.png'%}" style="width:120px;margin-top:-50px;margin-left:-80px;height:90px;transform: rotate(-10deg);">
 				</div>
+				{% endif %}
 				<p class="card-body text-start p-2">{% block last_body %}{% endblock%}</p>
 			</div>	
 		</div>
