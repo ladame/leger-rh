@@ -11,6 +11,15 @@
 	<link rel="stylesheet" href="{% static 'css/bootstrap5.min.css'%}">
 </head>
 <body style="background: rgba(255,255,0,0.4);">
+{% for message in messages %}
+<div class="container col-6">
+	<div class="alert alert-warning alert-dismissible rounded border-2 border-warning fade show" role="alert">
+	  <strong>{{message}}</strong>
+	  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+</div>
+{% endfor %}
+
 {% if user.is_superuser %}
 	<!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

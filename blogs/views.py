@@ -9,6 +9,8 @@ from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth.models import User
 
+from django.contrib import messages
+
 # Create your views here.
 def homepage(request):
 	mydata = myBlogs.objects.all().filter(active=True).order_by("-id")
@@ -59,20 +61,25 @@ def admin_page(request):
 		user=authenticate(username=username,password=password)
 		if user is not None:
 			login(request,user)
+			messages.success(request,"Connexion réussie ! Bienvenue %s"%username)
+		else:
+			messages.success(request,"Échec de la connexion! S’il vous plaît répéter encore!")
 		return HttpResponseRedirect('/blogs/adm/')
-		print(username)
+		
 	else:
 		if request.method == "POST":
 			forms = formBlogs(request.POST, request.FILES)
 			if forms.is_valid():
 				forms.save()
+				messages.success(request,"Nouvelles ajoutées avec succès!")
 			else:
-				print(forms)
+				messages.success(request,"Les nouvelles n’ont pas été ajoutées! La nouvelle a-t-elle déjà été publiée?")
 		forms = formBlogs()
 		return render(request,'blogs/input_admin.html',{'forms':forms})
 
 def logoutme(request):
 	logout(request)
+	messages.success(request,"Vous vous êtes déconnecté avec succès !")
 	return HttpResponseRedirect('/blogs/adm/')
 
 @login_required
@@ -86,15 +93,14 @@ def admin_list(request,page):
 			user = authenticate(username=username,password=password)
 
 			if user != None:
-				print('password awal benar')
 				usernya = User.objects.get(username=username)
 				usernya.set_password(pass1)
 				usernya.save()
-
+				messages.success(request,"Mise à jour du mot de passe réussie!")
 			else:
-				print("password lama salah")
+				messages.success(request,"Ancien mot de passe erroné! Mise à jour du mot de passe annulée...")
 		else:
-			print("pass beda")
+			messages.success(request,"Les premier et deuxième mots de passe sont différents! Mise à jour du mot de passe annulée...")
 		return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 	mydata = myBlogs.objects.all()
@@ -125,9 +131,11 @@ def update_active(request,pk):
 		myBlogs.objects.all().filter(id=int(pk)).update(active=False)
 	else:
 		myBlogs.objects.all().filter(id=int(pk)).update(active=True)
+	messages.success(request,"Nouvelles %s désactivées avec succès (archivées)!"%myBlogs.objects.get(id=int(pk)).title)
 	return HttpResponseRedirect('/blogs/adm/1/')
 
 @login_required
 def delete_active(request,pk):
 	myBlogs.objects.get(id=pk).delete()
+	messages.success(request,"La nouvelle a été supprimée avec succès!")
 	return HttpResponseRedirect('/blogs/adm/1/')
