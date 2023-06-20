@@ -11,6 +11,8 @@ from django.contrib.auth.models import User
 
 from django.contrib import messages
 
+from django.db import transaction
+
 # Create your views here.
 def homepage(request):
 	mydata = myBlogs.objects.all().filter(active=True).order_by("-id")
@@ -82,6 +84,7 @@ def logoutme(request):
 	messages.success(request,"Vous vous êtes déconnecté avec succès !")
 	return HttpResponseRedirect('/blogs/adm/')
 
+@transaction.atomic
 @login_required
 def admin_list(request,page):
 	if request.method=="POST":
@@ -123,19 +126,27 @@ def admin_list(request,page):
 	tampilkanlah = p.get_page(halaman)
 	return render(request,'blogs/list_blog.html',{'mydata':tampilkanlah})
 
+@transaction.atomic
 @login_required
 def update_active(request,pk):
-	status = myBlogs.objects.get(id=int(pk)).active
+	try:
+		status = myBlogs.objects.get(id=int(pk)).active
 
-	if status == True:
-		myBlogs.objects.all().filter(id=int(pk)).update(active=False)
-	else:
-		myBlogs.objects.all().filter(id=int(pk)).update(active=True)
-	messages.success(request,"Nouvelles %s désactivées avec succès (archivées)!"%myBlogs.objects.get(id=int(pk)).title)
+		if status == True:
+			myBlogs.objects.all().filter(id=int(pk)).update(active=False)
+		else:
+			myBlogs.objects.all().filter(id=int(pk)).update(active=True)
+		messages.success(request,"Nouvelles %s désactivées avec succès (archivées)!"%myBlogs.objects.get(id=int(pk)).title)
+	except:
+		messages.success(request,"La mise à jour du statut des nouvelles a échoué! Y a-t-il une erreur de numéro d’identification News ?")
 	return HttpResponseRedirect('/blogs/adm/1/')
 
+@transaction.atomic
 @login_required
 def delete_active(request,pk):
-	myBlogs.objects.get(id=pk).delete()
-	messages.success(request,"La nouvelle a été supprimée avec succès!")
+	try:
+		myBlogs.objects.get(id=pk).delete()
+		messages.success(request,"La nouvelle a été supprimée avec succès!")
+	except:
+		messages.success(request,"Nouvelles Échec de la suppression! Y a-t-il un mauvais identifiant de presse ?")
 	return HttpResponseRedirect('/blogs/adm/1/')
