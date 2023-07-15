@@ -1,10 +1,9 @@
 
 from django.urls import path
 
-from landingpage.views import homepage,cabinet,nantes,contact, cadres, mentions, rgpd,plansite
+from landingpage.views import cabinet,nantes,contact, cadres, mentions, rgpd,plansite
 
 urlpatterns = [
-    path('', homepage, name="homepage"),
     path('cabinet-conseil-recrutement-btp/',cabinet,name='cabinet'),
     path('recrutement-btp-paris-nantes/',nantes,name="nantes"),
     path('contact/',contact,name="contact"),
