@@ -29,9 +29,9 @@ DEBUG = True
 
 LOGIN_URL = '/blogs/adm/'
 
-ALLOWED_HOSTS = ['127.0.0.1','leopard1982.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1','janeaiple.pythonanywhere.com']
 
-CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000','https://leopard1982.pythonanywhere.com']
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000','https://janeaiple.pythonanywhere.com']
 
 
 # Application definition
