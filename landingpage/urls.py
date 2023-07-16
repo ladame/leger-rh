@@ -5,7 +5,7 @@ from landingpage.views import cabinet,nantes,contact, cadres, mentions, rgpd,pla
 
 urlpatterns = [
     path('',cabinet,name='cabinet'),
-    path('cabinet-conseil-recrutement-btp',cabinet,name='cabinet'),
+    path('cabinet-conseil-recrutement-btp/',cabinet,name='cabinet'),
     path('recrutement-btp-paris-nantes/',nantes,name="nantes"),
     path('contact/',contact,name="contact"),
     path('recrutement-cadres-btp/',cadres,name="cadres"),
